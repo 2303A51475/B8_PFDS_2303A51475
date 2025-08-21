@@ -1,0 +1,232 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNI0ZSIj1naLmSk9TIK8uKx",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/2303A51475/B8_PFDS_2303A51475/blob/main/LAB_2\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "hGs54pjoesjk"
+      },
+      "outputs": [],
+      "source": []
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "91os8SghEKHh",
+        "outputId": "30229302-7ea6-47fc-ea02-dab846f488b2"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Marks Array (5 students x 3 subjects):\n",
+            "[[78 85 90]\n",
+            " [88 79 92]\n",
+            " [90 91 89]\n",
+            " [65 70 72]\n",
+            " [82 88 84]]\n",
+            "\n",
+            "Overall average marks: 82.87\n",
+            "Overall minimum marks: 65\n",
+            "Overall maximum marks: 92\n",
+            "\n",
+            "Average marks per student:\n",
+            "[84.33333333 86.33333333 90.         69.         84.66666667]\n",
+            "\n",
+            "Average marks per subject:\n",
+            "[80.6 82.6 85.4]\n",
+            "\n",
+            "Marks of students 2 to 4:\n",
+            "[[88 79 92]\n",
+            " [90 91 89]\n",
+            " [65 70 72]]\n",
+            "\n",
+            "Boolean array for marks > 80:\n",
+            "[[False  True  True]\n",
+            " [ True False  True]\n",
+            " [ True  True  True]\n",
+            " [False False False]\n",
+            " [ True  True  True]]\n",
+            "\n",
+            "Students scoring above 80 in Math:\n",
+            "[[88 79 92]\n",
+            " [90 91 89]\n",
+            " [82 88 84]]\n",
+            "\n",
+            "Marks reshaped (subject-wise):\n",
+            "[[78 88 90 65 82]\n",
+            " [85 79 91 70 88]\n",
+            " [90 92 89 72 84]]\n",
+            "\n",
+            "Average marks per subject (from reshaped array):\n",
+            "[80.6 82.6 85.4]\n"
+          ]
+        }
+      ],
+      "source": [
+        "import numpy as np\n",
+        "\n",
+        "marks = np.array([\n",
+        "    [78, 85, 90],\n",
+        "    [88, 79, 92],\n",
+        "    [90, 91, 89],\n",
+        "    [65, 70, 72],\n",
+        "    [82, 88, 84]\n",
+        "])\n",
+        "\n",
+        "print(\"Marks Array (5 students x 3 subjects):\")\n",
+        "print(marks)\n",
+        "\n",
+        "avg_marks = np.mean(marks)\n",
+        "min_marks = np.min(marks)\n",
+        "max_marks = np.max(marks)\n",
+        "\n",
+        "print(f\"\\nOverall average marks: {avg_marks:.2f}\")\n",
+        "print(f\"Overall minimum marks: {min_marks}\")\n",
+        "print(f\"Overall maximum marks: {max_marks}\")\n",
+        "\n",
+        "avg_per_student = np.mean(marks, axis=1)\n",
+        "print(\"\\nAverage marks per student:\")\n",
+        "print(avg_per_student)\n",
+        "\n",
+        "avg_per_subject = np.mean(marks, axis=0)\n",
+        "print(\"\\nAverage marks per subject:\")\n",
+        "print(avg_per_subject)\n",
+        "\n",
+        "print(\"\\nMarks of students 2 to 4:\")\n",
+        "print(marks[1:4])\n",
+        "\n",
+        "above_80 = marks > 80\n",
+        "print(\"\\nBoolean array for marks > 80:\")\n",
+        "print(above_80)\n",
+        "\n",
+        "math_above_80 = marks[:, 0] > 80\n",
+        "print(\"\\nStudents scoring above 80 in Math:\")\n",
+        "print(marks[math_above_80])\n",
+        "\n",
+        "subject_wise = marks.T\n",
+        "print(\"\\nMarks reshaped (subject-wise):\")\n",
+        "print(subject_wise)\n",
+        "\n",
+        "print(\"\\nAverage marks per subject (from reshaped array):\")\n",
+        "print(np.mean(subject_wise, axis=1))\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import pandas as pd\n",
+        "\n",
+        "data = {\n",
+        "    'Name': ['Alice', 'Bob', 'Charlie', 'David', 'Eva'],\n",
+        "    'ID': [101, 102, 103, 104, 105],\n",
+        "    'Department': ['HR', 'IT', 'Finance', 'IT', 'HR'],\n",
+        "    'Salary': [48000, 52000, 61000, 45000, 70000]\n",
+        "}\n",
+        "\n",
+        "df = pd.DataFrame(data)\n",
+        "print(\"Initial DataFrame:\")\n",
+        "print(df)\n",
+        "\n",
+        "high_salary = df[df['Salary'] > 50000]\n",
+        "print(\"\\nEmployees with salary > 50,000:\")\n",
+        "print(high_salary)\n",
+        "\n",
+        "sorted_df = df.sort_values(by='Salary', ascending=False)\n",
+        "print(\"\\nDataFrame sorted by salary (descending):\")\n",
+        "print(sorted_df)\n",
+        "\n",
+        "df['Bonus'] = df['Salary'] * 0.10\n",
+        "print(\"\\nDataFrame with Bonus column added:\")\n",
+        "print(df)\n",
+        "\n",
+        "total_expense = df['Salary'].sum() + df['Bonus'].sum()\n",
+        "print(f\"\\nTotal salary expense including bonuses: {total_expense:.2f}\")\n",
+        "\n",
+        "csv_filename = 'employee_salary_bonus.csv'\n",
+        "df.to_csv(csv_filename, index=False)\n",
+        "print(f\"\\nDataFrame saved to CSV file: {csv_filename}\")\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "j0csA3GNEo84",
+        "outputId": "99277971-4158-4c2f-f988-9c44abb787e7"
+      },
+      "execution_count": 1,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Initial DataFrame:\n",
+            "      Name   ID Department  Salary\n",
+            "0    Alice  101         HR   48000\n",
+            "1      Bob  102         IT   52000\n",
+            "2  Charlie  103    Finance   61000\n",
+            "3    David  104         IT   45000\n",
+            "4      Eva  105         HR   70000\n",
+            "\n",
+            "Employees with salary > 50,000:\n",
+            "      Name   ID Department  Salary\n",
+            "1      Bob  102         IT   52000\n",
+            "2  Charlie  103    Finance   61000\n",
+            "4      Eva  105         HR   70000\n",
+            "\n",
+            "DataFrame sorted by salary (descending):\n",
+            "      Name   ID Department  Salary\n",
+            "4      Eva  105         HR   70000\n",
+            "2  Charlie  103    Finance   61000\n",
+            "1      Bob  102         IT   52000\n",
+            "0    Alice  101         HR   48000\n",
+            "3    David  104         IT   45000\n",
+            "\n",
+            "DataFrame with Bonus column added:\n",
+            "      Name   ID Department  Salary   Bonus\n",
+            "0    Alice  101         HR   48000  4800.0\n",
+            "1      Bob  102         IT   52000  5200.0\n",
+            "2  Charlie  103    Finance   61000  6100.0\n",
+            "3    David  104         IT   45000  4500.0\n",
+            "4      Eva  105         HR   70000  7000.0\n",
+            "\n",
+            "Total salary expense including bonuses: 303600.00\n",
+            "\n",
+            "DataFrame saved to CSV file: employee_salary_bonus.csv\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
