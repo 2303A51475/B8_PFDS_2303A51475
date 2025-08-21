@@ -1,0 +1,175 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOEE50d/zM5+ULvI48IeEP7",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/2303A51475/B8_PFDS_2303A51475/blob/main/LAB_1\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "T-wCG6PNd15j"
+      },
+      "outputs": [],
+      "source": []
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "3wYmTM7cFt2d",
+        "outputId": "0072bbfa-b1c2-4b4e-db7d-1cfb67801cec"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter a small number (0-10) to compute factorial: 1\n",
+            "\n",
+            "Computing factorial(1):\n",
+            "\n",
+            "factorial(1) called\n",
+            "  factorial(0) -> 1 (base case)\n",
+            "factorial(1) returns 1\n",
+            "\n",
+            "Factorial of 1 is 1\n"
+          ]
+        }
+      ],
+      "source": [
+        "def factorial(n, depth=0):\n",
+        "    indent = \"  \" * depth\n",
+        "    if n == 0:\n",
+        "        print(f\"{indent}factorial({n}) -> 1 (base case)\")\n",
+        "        return 1\n",
+        "    else:\n",
+        "        print(f\"{indent}factorial({n}) called\")\n",
+        "        result = n * factorial(n-1, depth + 1)\n",
+        "        print(f\"{indent}factorial({n}) returns {result}\")\n",
+        "        return result\n",
+        "\n",
+        "def main():\n",
+        "    while True:\n",
+        "        try:\n",
+        "            num = int(input(\"Enter a small number (0-10) to compute factorial: \"))\n",
+        "            if 0 <= num <= 10:\n",
+        "                print(f\"\\nComputing factorial({num}):\\n\")\n",
+        "                fact = factorial(num)\n",
+        "                print(f\"\\nFactorial of {num} is {fact}\")\n",
+        "                break\n",
+        "            else:\n",
+        "                print(\"Please enter a number between 0 and 10.\")\n",
+        "        except ValueError:\n",
+        "            print(\"Invalid input. Enter an integer.\")\n",
+        "\n",
+        "if __name__ == \"__main__\":\n",
+        "    main()\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import time\n",
+        "import sys\n",
+        "\n",
+        "def factorial_recursive(n):\n",
+        "    if n < 0:\n",
+        "        raise ValueError(\"Negative numbers not allowed\")\n",
+        "    if n == 0:\n",
+        "        return 1\n",
+        "    return n * factorial_recursive(n - 1)\n",
+        "\n",
+        "def factorial_iterative(n):\n",
+        "    if n < 0:\n",
+        "        raise ValueError(\"Negative numbers not allowed\")\n",
+        "    result = 1\n",
+        "    for i in range(1, n + 1):\n",
+        "        result *= i\n",
+        "    return result\n",
+        "\n",
+        "def measure_time_and_memory(func, arg):\n",
+        "    start_time = time.perf_counter()\n",
+        "    result = func(arg)\n",
+        "    end_time = time.perf_counter()\n",
+        "    time_taken = end_time - start_time\n",
+        "    memory_used = sys.getsizeof(result)\n",
+        "    return result, time_taken, memory_used\n",
+        "\n",
+        "def main():\n",
+        "    test_values = [5, 10, 15]\n",
+        "\n",
+        "    print(f\"{'N':>3} | {'Method':>10} | {'Result':>10} | {'Time (s)':>10} | {'Memory (bytes)':>15}\")\n",
+        "    print(\"-\" * 60)\n",
+        "\n",
+        "    for n in test_values:\n",
+        "        try:\n",
+        "            res_rec, time_rec, mem_rec = measure_time_and_memory(factorial_recursive, n)\n",
+        "            res_itr, time_itr, mem_itr = measure_time_and_memory(factorial_iterative, n)\n",
+        "            assert res_rec == res_itr\n",
+        "\n",
+        "            print(f\"{n:3} | {'Recursive':>10} | {res_rec:10} | {time_rec:10.6f} | {mem_rec:15}\")\n",
+        "            print(f\"{n:3} | {'Iterative':>10} | {res_itr:10} | {time_itr:10.6f} | {mem_itr:15}\")\n",
+        "            print(\"-\" * 60)\n",
+        "\n",
+        "        except Exception as e:\n",
+        "            print(f\"Error computing factorial({n}): {e}\")\n",
+        "\n",
+        "if __name__ == \"__main__\":\n",
+        "    main()\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "JRxJWkMwF8JT",
+        "outputId": "6d010b20-3889-4fbe-a809-f477daf9a1be"
+      },
+      "execution_count": 1,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "  N |     Method |     Result |   Time (s) |  Memory (bytes)\n",
+            "------------------------------------------------------------\n",
+            "  5 |  Recursive |        120 |   0.000003 |              28\n",
+            "  5 |  Iterative |        120 |   0.000003 |              28\n",
+            "------------------------------------------------------------\n",
+            " 10 |  Recursive |    3628800 |   0.000002 |              28\n",
+            " 10 |  Iterative |    3628800 |   0.000002 |              28\n",
+            "------------------------------------------------------------\n",
+            " 15 |  Recursive | 1307674368000 |   0.000003 |              32\n",
+            " 15 |  Iterative | 1307674368000 |   0.000002 |              32\n",
+            "------------------------------------------------------------\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
